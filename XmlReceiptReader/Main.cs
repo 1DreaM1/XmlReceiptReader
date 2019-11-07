@@ -396,7 +396,7 @@ namespace XmlReceiptReader
         async private void button2_Click(object sender, EventArgs e)
         {
             stopProcess = true;
-            await Task.Delay(10);
+            await Task.Delay(250);
             textBoxLog.SelectionColor = Color.Red;
             textBoxLog.AppendText("\nZRUŠENÉ");
             textBoxLog.SelectionColor = Color.Black;

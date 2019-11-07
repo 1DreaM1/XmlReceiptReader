@@ -44,8 +44,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.backToReceipts = new System.Windows.Forms.ToolStripButton();
+            this.toolStripShowItems = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbuttonLoadFolder = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +79,7 @@
             this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.zobraziťTovarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -124,11 +129,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBarProcess = new System.Windows.Forms.ProgressBar();
-            this.backToReceipts = new System.Windows.Forms.ToolStripButton();
-            this.toolStripShowItems = new System.Windows.Forms.ToolStripButton();
-            this.toolbuttonLoadFolder = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.zobraziťTovarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridItems)).BeginInit();
@@ -157,15 +157,52 @@
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // backToReceipts
+            // 
+            this.backToReceipts.Image = global::XmlReceiptReader.Properties.Resources._return;
+            this.backToReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.backToReceipts.Name = "backToReceipts";
+            this.backToReceipts.Size = new System.Drawing.Size(124, 22);
+            this.backToReceipts.Text = "Späť na doklady";
+            this.backToReceipts.Visible = false;
+            this.backToReceipts.Click += new System.EventHandler(this.ToolStripButton4_Click);
+            // 
+            // toolStripShowItems
+            // 
+            this.toolStripShowItems.Image = global::XmlReceiptReader.Properties.Resources.list;
+            this.toolStripShowItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripShowItems.Name = "toolStripShowItems";
+            this.toolStripShowItems.Size = new System.Drawing.Size(112, 22);
+            this.toolStripShowItems.Text = "Zobraziť tovar";
+            this.toolStripShowItems.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolbuttonLoadFolder
+            // 
+            this.toolbuttonLoadFolder.Image = global::XmlReceiptReader.Properties.Resources.database_export;
+            this.toolbuttonLoadFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbuttonLoadFolder.Name = "toolbuttonLoadFolder";
+            this.toolbuttonLoadFolder.Size = new System.Drawing.Size(180, 22);
+            this.toolbuttonLoadFolder.Text = "Generovať novú databázu";
+            this.toolbuttonLoadFolder.Click += new System.EventHandler(this.toolbuttonLoadFolder_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::XmlReceiptReader.Properties.Resources.upload;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(161, 22);
+            this.toolStripButton1.Text = "Načítať novú databázu";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // dataGridView
             // 
@@ -528,6 +565,14 @@
             this.zobraziťTovarToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(149, 26);
+            // 
+            // zobraziťTovarToolStripMenuItem
+            // 
+            this.zobraziťTovarToolStripMenuItem.Image = global::XmlReceiptReader.Properties.Resources.list;
+            this.zobraziťTovarToolStripMenuItem.Name = "zobraziťTovarToolStripMenuItem";
+            this.zobraziťTovarToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.zobraziťTovarToolStripMenuItem.Text = "Zobraziť tovar";
+            this.zobraziťTovarToolStripMenuItem.Click += new System.EventHandler(this.ZobraziťTovarToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -933,51 +978,6 @@
             this.progressBarProcess.Name = "progressBarProcess";
             this.progressBarProcess.Size = new System.Drawing.Size(544, 19);
             this.progressBarProcess.TabIndex = 10;
-            // 
-            // backToReceipts
-            // 
-            this.backToReceipts.Image = global::XmlReceiptReader.Properties.Resources._return;
-            this.backToReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.backToReceipts.Name = "backToReceipts";
-            this.backToReceipts.Size = new System.Drawing.Size(124, 22);
-            this.backToReceipts.Text = "Späť na doklady";
-            this.backToReceipts.Visible = false;
-            this.backToReceipts.Click += new System.EventHandler(this.ToolStripButton4_Click);
-            // 
-            // toolStripShowItems
-            // 
-            this.toolStripShowItems.Image = global::XmlReceiptReader.Properties.Resources.list;
-            this.toolStripShowItems.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripShowItems.Name = "toolStripShowItems";
-            this.toolStripShowItems.Size = new System.Drawing.Size(112, 22);
-            this.toolStripShowItems.Text = "Zobraziť tovar";
-            this.toolStripShowItems.Click += new System.EventHandler(this.ToolStripButton1_Click);
-            // 
-            // toolbuttonLoadFolder
-            // 
-            this.toolbuttonLoadFolder.Image = global::XmlReceiptReader.Properties.Resources.database_export;
-            this.toolbuttonLoadFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolbuttonLoadFolder.Name = "toolbuttonLoadFolder";
-            this.toolbuttonLoadFolder.Size = new System.Drawing.Size(180, 22);
-            this.toolbuttonLoadFolder.Text = "Generovať novú databázu";
-            this.toolbuttonLoadFolder.Click += new System.EventHandler(this.toolbuttonLoadFolder_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = global::XmlReceiptReader.Properties.Resources.upload;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(161, 22);
-            this.toolStripButton1.Text = "Načítať novú databázu";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
-            // 
-            // zobraziťTovarToolStripMenuItem
-            // 
-            this.zobraziťTovarToolStripMenuItem.Image = global::XmlReceiptReader.Properties.Resources.list;
-            this.zobraziťTovarToolStripMenuItem.Name = "zobraziťTovarToolStripMenuItem";
-            this.zobraziťTovarToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.zobraziťTovarToolStripMenuItem.Text = "Zobraziť tovar";
-            this.zobraziťTovarToolStripMenuItem.Click += new System.EventHandler(this.ZobraziťTovarToolStripMenuItem_Click);
             // 
             // Main
             // 
