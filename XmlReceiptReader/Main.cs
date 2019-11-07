@@ -256,15 +256,23 @@ namespace XmlReceiptReader
             async public void CreateDatabase() {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
+                SqlDriver sqlDriver = new SqlDriver();
+                sqlDriver.CreateDatabase();
+
+                stopProcess = false;
                 panel.Visible = true;
                 textBoxLog.Text = "Nová databáza vytvorená: /n " + Program.DB_PATH;
-                SqlDriver.CreateDatabase();
                 string path = folderBrowserDialog.SelectedPath;
 
                 string[] files = Directory.GetFiles(path, "*sent.xml");
                 double totalFiles = files.Length;
                 double filesDone = 0;
-               
+
+                labelDone.Text = "0";
+                labelLeft.Text = "0";
+                labelPer.Text = "0%";
+                progressBarProcess.Value = 0;
+
                 labelAll.Text = totalFiles.ToString();
 
                 foreach (string file in Directory.EnumerateFiles(path, "*sent.xml"))

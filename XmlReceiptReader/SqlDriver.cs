@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,22 +12,30 @@ namespace XmlReceiptReader
 {
     class SqlDriver
     {
-        public static void CreateDatabase()
+        public void CreateDatabase()
         {
             try
             {
-                if (File.Exists(Program.DB_PATH))
-                    File.Delete(Program.DB_PATH);
-
                 SQLiteConnection sqlite_conn;
                 SQLiteCommand sqlite_cmd;
 
-                sqlite_conn = new SQLiteConnection("Data Source=" + Program.DB_PATH + ";Version=3;New=True;Compress=True;");
-                sqlite_conn.Open();
-                sqlite_cmd = sqlite_conn.CreateCommand();
+                if (!File.Exists(Program.DB_PATH))
+                {
+                    sqlite_conn = new SQLiteConnection("Data Source=" + Program.DB_PATH + ";Version=3;New=True;Compress=True;");
+                    sqlite_conn.Open();
+                    sqlite_cmd = sqlite_conn.CreateCommand();
 
-                sqlite_cmd.CommandText = SQL.CreateDatabaseScript();
-                sqlite_cmd.ExecuteNonQuery();
+                    sqlite_cmd.CommandText = SQL.CreateDatabaseScript();
+                    sqlite_cmd.ExecuteNonQuery();
+                }
+                else {
+                    sqlite_conn = new SQLiteConnection("Data Source=" + Program.DB_PATH + ";Version=3;New=False;Compress=True;");
+                    sqlite_conn.Open();
+                    sqlite_cmd = sqlite_conn.CreateCommand();
+
+                    sqlite_cmd.CommandText = SQL.CLearDBScript();
+                    sqlite_cmd.ExecuteNonQuery();
+                }
                 sqlite_conn.Close();
             }
             catch (Exception e)

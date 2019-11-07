@@ -76,5 +76,12 @@ namespace XmlReceiptReader
 
             return sql;
         }
+
+        public static string CLearDBScript() {
+            string sql = @"DELETE FROM receipts;
+                            DELETE FROM items;";
+
+            return sql;
+        }
     }
 }
